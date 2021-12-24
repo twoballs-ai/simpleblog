@@ -3,10 +3,11 @@
 {% block content %}
 <h1>Мой Блог</h1>
 {% for post in posts %}
-<h2>
-    <a href="{{ post.get_absoluter_url }}">{{ post.title }}</a>
-</h2>
-<p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+    <div class="blog-post">
+    <h2 class="blog-post-title"><a href="{{ post.get_absoluter_url }}">{{ post.title }}</a></h2>
+
+    </div>
+<p class="date">Published {{ post.publish }} by <a href="{{ post.author }}">{{ post.author }}</a></p>
 {{ post.body|truncatewords:30|linebreaks }}
 {% endfor %}
     {% include "blog/pagination.html" with page=page_obj %}
