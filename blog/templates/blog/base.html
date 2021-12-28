@@ -1,3 +1,4 @@
+{% load blog_tags %}
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -140,7 +141,16 @@
     <aside class="col-md-4 blog-sidebar">
         <div id="sidebar">
     <h2>Мой блог</h2>
-    <p>Это мой блог</p>
+    <p>Это мой блог. Я написал {% total_posts %} статей.</p>
+    <h3>Latest posts</h3>
+    {% show_latest_posts %}
+            <h3>Most commented posts</h3>
+{% get_most_commented_posts as most_commented_posts %}
+<ul>
+{% for post in most_commented_posts %}
+<li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
 </div>
       <div class="p-4 mb-3 bg-light rounded">
 
@@ -181,7 +191,7 @@
 </main><!-- /.container -->
 
 <footer class="blog-footer">
-  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+
   <p>
     <a href="#">Back to top</a>
   </p>
